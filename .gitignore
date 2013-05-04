@@ -1,0 +1,22 @@
+.DS_Store
+
+# C extensions
+*.so
+
+# Packages
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+.installed.cfg
+lib
+lib64
+*.log
+*~
+
+# Translations
+*.mo
+

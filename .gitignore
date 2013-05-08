@@ -20,3 +20,6 @@ lib64
 # Translations
 *.mo
 
+.project
+.classpath
+*.class

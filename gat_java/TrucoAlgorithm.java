@@ -1,12 +1,14 @@
 package gat_java;
 
-import gat_java.JavaAlgorithm;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public abstract class TrucoAlgorithm extends JavaAlgorithm {
 
     @Override
-    public void processMessage(String message) {
+    public void processMessage(Map<String, String> message) {
         if (message.get("action") == "play") {
             return this.play(message.get("context"));
         } else if (message.get("action") == "accept_truco") {
@@ -24,15 +26,15 @@ public abstract class TrucoAlgorithm extends JavaAlgorithm {
 
     public abstract boolean acceptTruco(Map context);
 
-    public boolean canTruco(Map context) {
+    public boolean canTruco(Map<String, String> context) {
         return Integer.parseInt(context.get("round_value")) < 12;
     }
 
-    public void upcard() {
+    public void upcard() throws IOException {
         this.sendResponse(new HashMap()); //{'action': 'upcard', 'hand_card': card}
     }
 
-    public void truco() {
+    public void truco() throws IOException {
         this.sendResponse(new HashMap()); //{'action': 'truco'}
     }
 }

@@ -1,12 +1,12 @@
 <ivy-module version="2.0">
-    <info organisation="com.gatournament" module="gatjava" revision="0.0.1"/>
+    <info organisation="com.gatournament" module="gatjava" revision="0.0.1" status="integration" publication="20130509153210"/>
     <publications>
         <artifact name="gatjava" type="jar" ext="jar"/>
     </publications>
     
     <dependencies>
         <dependency org="net.sf.json-lib" name="json-lib" rev="2.4">
-            <artifact name="json-lib" type="jar" url="http://repo2.maven.org/maven2/net/sf/json-lib/json-lib/2.4/json-lib-2.4-jdk15.jar" />
+            <artifact name="json-lib" type="jar" url="http://repo2.maven.org/maven2/net/sf/json-lib/json-lib/2.4/json-lib-2.4-jdk15.jar"/>
         </dependency>
         <dependency org="com.google.code.gson" name="gson" rev="2.2.3"/>
         <dependency org="net.sf.flexjson" name="flexjson" rev="3.0"/>

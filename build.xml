@@ -40,7 +40,7 @@
 
     <target name="compile" depends="ivy-retrieve">
         <mkdir dir="bin"/>
-        <javac srcdir="src" destdir="bin" debug="true" nowarn="yes" source="1.6" target="1.6" encoding="utf8">
+        <javac srcdir="src" destdir="bin" debug="true" nowarn="yes" source="1.6" target="1.6" encoding="utf8" includeantruntime="false">
 			<classpath>
 			    <fileset dir="lib" includes="**/*jar"/>
 			</classpath>
@@ -49,12 +49,21 @@
 
     <target name="jar" depends="compile">
         <mkdir dir="dist"/>
-        <jar destfile="dist/gat-java.jar">
+        <jar destfile="dist/gat-java-only.jar">
             <fileset dir="bin" includes="**/*.class"/>
         </jar>
     </target>
 
-	<target name="publish-local" depends="clean, jar">
+    <target name="jarjar" depends="jar">
+        <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask" classpath="lib/jarjar.jar"/>
+        <jarjar jarfile="dist/gat-java.jar">
+            <zipfileset src="dist/gat-java-only.jar"/>
+            <zipfileset src="lib/json-simple.jar"/>
+            <rule pattern="org.json.simple.**" result="gat_java.@1"/>
+        </jarjar>
+    </target>
+
+	<target name="publish-local" depends="clean, jarjar">
 	    <ivy:publish artifactspattern="dist/[artifact].[ext]"
 	                    resolver="local"
 	                    pubrevision="${version}"
@@ -64,7 +73,7 @@
 	    <echo message="project ${ant.project.name} published locally with version ${version}" />
 	</target>
 
-	<target name="publish" depends="clean, jar">
+	<target name="publish" depends="clean, jarjar">
 	    <ivy:publish artifactspattern="dist/[artifact].[ext]"
 	                       resolver="public"
 	                       pubrevision="${version}"

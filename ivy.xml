@@ -5,6 +5,7 @@
     </publications>
 
     <dependencies>
+        <dependency org="com.tonicsystems" name="jarjar" rev="0.6"/>
         <dependency org="com.googlecode.json-simple" name="json-simple" rev="1.1"/>
     </dependencies>
 </ivy-module>

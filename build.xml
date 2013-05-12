@@ -19,7 +19,7 @@
         </path>
         <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
     </target>
-    
+
     <target name="clean-ivy" depends="install-ivy">
         <delete dir="${ivy.jar.dir}"/>
         <ivy:cleancache />
@@ -28,16 +28,16 @@
     <target name="ivy-retrieve" depends="install-ivy">
         <ivy:retrieve pattern="lib/[artifact](-[classifier]).[ext]"/>
     </target>
-    
+
     <!-- Dist tasks -->
-    
+
     <target name="clean">
         <delete includeemptydirs="true" quiet="true">
             <fileset dir="bin" />
             <fileset dir="dist" />
         </delete>
     </target>
-    
+
     <target name="compile" depends="ivy-retrieve">
         <mkdir dir="bin"/>
         <javac srcdir="src" destdir="bin" debug="true" nowarn="yes" source="1.6" target="1.6" encoding="utf8">
@@ -53,9 +53,9 @@
             <fileset dir="bin" includes="**/*.class"/>
         </jar>
     </target>
-    
+
 	<target name="publish-local" depends="clean, jar">
-	    <ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" 
+	    <ivy:publish artifactspattern="dist/[artifact].[ext]"
 	                    resolver="local"
 	                    pubrevision="${version}"
 	                    status="integration"
@@ -63,11 +63,11 @@
 	                    overwrite="true"/>
 	    <echo message="project ${ant.project.name} published locally with version ${version}" />
 	</target>
-    
+
 	<target name="publish" depends="clean, jar">
-	    <ivy:publish artifactspattern="${build.dir}/[artifact].[ext]" 
-	                       resolver="shared"
-	                       pubrevision="${version}" 
+	    <ivy:publish artifactspattern="dist/[artifact].[ext]"
+	                       resolver="public"
+	                       pubrevision="${version}"
 	                       status="release" />
 	    <echo message="project ${ant.project.name} released with version ${version}" />
 	</target>

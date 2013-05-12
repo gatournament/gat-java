@@ -1,0 +1,14 @@
+<ivysettings>
+    <settings defaultResolver="internet"/>
+    <resolvers>
+        <filesystem name="local" m2compatible="true">
+            <artifact pattern="${user.home}/.m2/repository/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
+        </filesystem>
+        <chain name="internet">
+            <ibiblio name="central" m2compatible="true"/>
+            <ibiblio name="public" m2compatible="true"/>
+            <ibiblio name="maven2" m2compatible="true"/>
+            <ibiblio name="maven" m2compatible="true" usepoms="false"/>
+        </chain>
+    </resolvers>
+</ivysettings>

@@ -1,5 +1,5 @@
 <project name="go-ivy" default="go" xmlns:ivy="antlib:org.apache.ivy.ant">
-    <property name="ivy.install.version" value="2.0.0-beta1" />
+    <property name="ivy.install.version" value="2.3.0" />
     <property name="ivy.jar.dir" value="${basedir}/ivy" />
     <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
 
@@ -27,6 +27,12 @@
 
     <target name="ivy-retrieve" depends="install-ivy">
         <ivy:retrieve pattern="lib/[artifact](-[classifier]).[ext]"/>
+    </target>
+
+    <target name="ivy-gen-pom" depends="ivy-retrieve">
+        <ivy:makepom ivyfile="ivy.xml" pomfile="dist/gat-java.pom" conf="default">
+            <mapping conf="default" scope="compile"/>
+        </ivy:makepom>
     </target>
 
     <!-- Dist tasks -->
@@ -63,7 +69,7 @@
         </jarjar>
     </target>
 
-	<target name="publish-local" depends="clean, jarjar">
+	<target name="publish-local" depends="clean, jarjar, ivy-gen-pom">
 	    <ivy:publish artifactspattern="dist/[artifact].[ext]"
 	                    resolver="local"
 	                    pubrevision="${version}"
@@ -73,9 +79,9 @@
 	    <echo message="project ${ant.project.name} published locally with version ${version}" />
 	</target>
 
-	<target name="publish" depends="clean, jarjar">
+	<target name="publish" depends="clean, jarjar, ivy-gen-pom">
 	    <ivy:publish artifactspattern="dist/[artifact].[ext]"
-	                       resolver="public"
+	                       resolver="internet"
 	                       pubrevision="${version}"
 	                       status="release" />
 	    <echo message="project ${ant.project.name} released with version ${version}" />

@@ -1,11 +1,18 @@
 <ivy-module version="2.0">
     <info organisation="com.gatournament" module="gat-java" revision="0.0.1"/>
+
+    <configurations>
+        <conf name="default"/>
+        <conf name="dev" visibility="private"/>
+    </configurations>
+
     <publications>
         <artifact name="gat-java" type="jar" ext="jar"/>
+        <artifact type="pom" ext="pom"/>
     </publications>
 
     <dependencies>
-        <dependency org="com.tonicsystems" name="jarjar" rev="0.6"/>
-        <dependency org="com.googlecode.json-simple" name="json-simple" rev="1.1"/>
+        <dependency org="com.googlecode.json-simple" name="json-simple" rev="1.1" conf="dev->default"/>
+        <dependency org="com.tonicsystems" name="jarjar" rev="0.6" conf="dev->default"/>
     </dependencies>
 </ivy-module>

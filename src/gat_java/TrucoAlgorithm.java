@@ -1,7 +1,6 @@
 package gat_java;
 
 import java.io.IOException;
-import java.util.Map;
 
 import org.json.simple.JSONObject;
 
@@ -31,8 +30,8 @@ public abstract class TrucoAlgorithm extends JavaAlgorithm {
 
 	public abstract boolean acceptTruco(JSONObject context);
 
-	public boolean canTruco(Map<String, String> context) {
-		return Integer.parseInt(context.get("round_value")) < 12;
+	public boolean canTruco(JSONObject context) {
+		return ((Long) context.get("round_value")) < 12;
 	}
 
 	public void upcard(Object card) throws IOException {

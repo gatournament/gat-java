@@ -5,10 +5,6 @@
     </publications>
     
     <dependencies>
-        <dependency org="net.sf.json-lib" name="json-lib" rev="2.4">
-            <artifact name="json-lib" type="jar" url="http://repo2.maven.org/maven2/net/sf/json-lib/json-lib/2.4/json-lib-2.4-jdk15.jar" />
-        </dependency>
-        <dependency org="com.google.code.gson" name="gson" rev="2.2.3"/>
-        <dependency org="net.sf.flexjson" name="flexjson" rev="3.0"/>
+        <dependency org="com.googlecode.json-simple" name="json-simple" rev="1.1"/>
     </dependencies>
 </ivy-module>

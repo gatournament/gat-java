@@ -2,8 +2,7 @@ language: java
 python:
   - "6"
   - "7"
-# install:
-#   - pip install -r requirements.txt
-#   - pip install -r requirements-test.txt
-# script:
-#   - nosetests
+install:
+  - ant ivy-retrieve
+script:
+  - ant jarjar

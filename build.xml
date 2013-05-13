@@ -65,7 +65,7 @@
         <jarjar jarfile="dist/gat-java.jar">
             <zipfileset src="dist/gat-java-only.jar"/>
             <zipfileset src="lib/json-simple.jar"/>
-            <rule pattern="org.json.simple.**" result="gat_java.@1"/>
+            <rule pattern="org.json.simple.**" result="com.gatournament.gat_java.@1"/>
         </jarjar>
     </target>
 

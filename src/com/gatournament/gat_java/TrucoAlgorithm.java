@@ -1,4 +1,4 @@
-package gat_java;
+package com.gatournament.gat_java;
 
 import java.io.IOException;
 

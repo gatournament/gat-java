@@ -1,4 +1,4 @@
-import gat_java.TrucoAlgorithm;
+import com.gatournament.gat_java.TrucoAlgorithm;
 
 import java.util.Random;
 

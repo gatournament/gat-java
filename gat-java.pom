@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.gatournament</groupId>
+    <artifactId>gat-java</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.1</version>
+
+    <name>gat-java</name>
+    <description>Java SDK for Game Algorithms Tournament</description>
+    <url>http://gatournament.com</url>
+    <developers>
+        <developer>
+            <id>gat</id>
+            <name>Game Algorithms Tournament</name>
+            <email>contact@gatournament.com</email>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>MIT license</name>
+            <url>http://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:git@github.com:gatournament/gat-java.git</connection>
+        <developerConnection>scm:git:git@github.com:gatournament/gat-java.git</developerConnection>
+        <url>git@github.com:gatournament/gat-java.git</url>
+    </scm>
+</project>
+<!-- https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide -->

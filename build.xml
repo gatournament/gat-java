@@ -69,7 +69,7 @@
         </jarjar>
     </target>
 
-	<target name="publish-local" depends="clean, jarjar, ivy-gen-pom">
+	<target name="publish-local" depends="clean, jarjar">
 	    <ivy:publish artifactspattern="dist/[artifact].[ext]"
 	                    resolver="local"
 	                    pubrevision="${version}"
@@ -79,7 +79,7 @@
 	    <echo message="project ${ant.project.name} published locally with version ${version}" />
 	</target>
 
-	<target name="publish" depends="clean, jarjar, ivy-gen-pom">
+	<target name="publish" depends="clean, jarjar">
 	    <ivy:publish artifactspattern="dist/[artifact].[ext]"
 	                       resolver="internet"
 	                       pubrevision="${version}"

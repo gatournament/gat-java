@@ -19,6 +19,21 @@ def colorize(text, color)
   end
 end
 
+def publish(username, repo, path, file)
+  sh "curl -u #{username} #{repo}#{path} --request PUT -H 'Content-Type:text/xml' --data @#{file}"
+end
+
+def publish_gat(repo)
+  username = "gat"
+  path = "/com/gatournament/gat-java/0.0.1/gat-java.pom"
+  file = "gat-java.pom"
+  publish(username, repo, path, file)
+
+  path = "/com/gatournament/gat-java/0.0.1/gat-java.jar"
+  file = "dist/gat-java-only.jar"
+  publish(username, repo, path, file)
+end
+
 task :tag => [:tests] do
   sh "git tag #{VERSION}"
   sh "git push origin #{VERSION}"
@@ -44,8 +59,12 @@ task :install => [:package] do
   sh "ant publish-local"
 end
 
-task :publish => [:package, :tag] do
-  sh "ant publish"
+task :publish_snapshot => [:package] do
+  publish_gat("https://oss.sonatype.org/content/repositories/snapshots")
+end
+
+task :publish => [:package] do
+  publish_gat("https://oss.sonatype.org/service/local/staging/deploy/maven2")
 end
 
 task :default => [:tests]

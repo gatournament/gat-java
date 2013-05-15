@@ -70,6 +70,7 @@
     </target>
 
 	<target name="publish-local" depends="clean, jarjar">
+        <copy file="gat-java.pom" todir="dist"/>
 	    <ivy:publish artifactspattern="dist/[artifact].[ext]"
 	                    resolver="local"
 	                    pubrevision="${version}"
@@ -79,11 +80,23 @@
 	    <echo message="project ${ant.project.name} published locally with version ${version}" />
 	</target>
 
-	<target name="publish" depends="clean, jarjar">
-	    <ivy:publish artifactspattern="dist/[artifact].[ext]"
-	                       resolver="internet"
-	                       pubrevision="${version}"
-	                       status="release" />
-	    <echo message="project ${ant.project.name} released with version ${version}" />
-	</target>
+    <target name="publish-snapshot" depends="clean, jarjar">
+        <copy file="gat-java.pom" todir="dist"/>
+        <ivy:resolve/>
+        <ivy:publish artifactspattern="dist/[artifact].[ext]"
+                           resolver="nexus-snapshots"
+                           pubrevision="${version}"
+                           overwrite="true" />
+        <echo message="project ${ant.project.name} released with version ${version}" />
+    </target>
+
+    <target name="publish" depends="clean, jarjar">
+        <copy file="gat-java.pom" todir="dist"/>
+        <ivy:resolve/>
+        <ivy:publish artifactspattern="dist/[artifact].[ext]"
+                           resolver="nexus-releases"
+                           pubrevision="${version}"
+                           status="release" />
+        <echo message="project ${ant.project.name} released with version ${version}" />
+    </target>
 </project>

@@ -1,14 +1,13 @@
 <ivysettings>
-    <settings defaultResolver="internet"/>
+    <settings defaultResolver="local"/>
+
     <resolvers>
         <filesystem name="local" m2compatible="true">
             <artifact pattern="${user.home}/.m2/repository/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
         </filesystem>
-        <chain name="internet">
-            <ibiblio name="central" m2compatible="true"/>
-            <ibiblio name="public" m2compatible="true"/>
-            <ibiblio name="maven2" m2compatible="true"/>
-            <ibiblio name="maven" m2compatible="true" usepoms="false"/>
-        </chain>
+
+        <ibiblio name="nexus-releases" m2compatible="true" root="https://oss.sonatype.org/service/local/staging/deploy/maven2"/>
+
+        <ibiblio name="nexus-snapshots" m2compatible="true" root="https://oss.sonatype.org/content/repositories/snapshots/" checkmodified="true" changingPattern="*-SNAPSHOT"/>
     </resolvers>
 </ivysettings>

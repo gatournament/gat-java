@@ -32,6 +32,14 @@ def publish_gat(repo)
   path = "/com/gatournament/gat-java/0.0.1/gat-java.jar"
   file = "dist/gat-java-only.jar"
   publish(username, repo, path, file)
+
+  path = "/com/gatournament/gat-java/0.0.1/gat-java-sources.jar"
+  file = "dist/gat-java-sources.jar"
+  publish(username, repo, path, file)
+
+  path = "/com/gatournament/gat-java/0.0.1/gat-java-javadoc.jar"
+  file = "dist/gat-java-javadoc.jar"
+  publish(username, repo, path, file)
 end
 
 task :tag => [:tests] do

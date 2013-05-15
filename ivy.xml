@@ -9,6 +9,8 @@
     <publications>
         <artifact name="gat-java" type="jar" ext="jar"/>
         <artifact type="pom" ext="pom"/>
+        <artifact type="sources" ext="sources"/>
+        <artifact type="javadoc" ext="javadoc"/>
     </publications>
 
     <dependencies>

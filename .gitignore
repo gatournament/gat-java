@@ -20,6 +20,7 @@ lib64
 # Translations
 *.mo
 
+javadoc
 .project
 .classpath
 *.class

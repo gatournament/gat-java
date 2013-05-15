@@ -41,6 +41,7 @@
         <delete includeemptydirs="true" quiet="true">
             <fileset dir="bin" />
             <fileset dir="dist" />
+            <fileset dir="javadoc" />
         </delete>
     </target>
 
@@ -67,6 +68,25 @@
             <zipfileset src="lib/json-simple.jar"/>
             <rule pattern="org.json.simple.**" result="com.gatournament.gat_java.@1"/>
         </jarjar>
+    </target>
+
+    <target name="jar-sources">
+        <mkdir dir="dist"/>
+        <jar destfile="dist/gat-java-sources.jar">
+            <fileset dir="src" includes="**/*.java"/>
+        </jar>
+    </target>
+
+    <target name="jar-javadoc">
+        <mkdir dir="dist"/>
+        <delete includeemptydirs="true" quiet="true">
+            <fileset dir="javadoc" />
+        </delete>
+        <mkdir dir="javadoc"/>
+        <javadoc sourcepath="src" destdir="javadoc"/>
+        <jar destfile="dist/gat-java-javadoc.jar">
+            <fileset dir="javadoc" includes="**/*"/>
+        </jar>
     </target>
 
 	<target name="publish-local" depends="clean, jarjar">

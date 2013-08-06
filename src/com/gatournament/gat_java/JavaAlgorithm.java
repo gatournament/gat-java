@@ -1,6 +1,8 @@
 package com.gatournament.gat_java;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -17,6 +19,7 @@ public abstract class JavaAlgorithm {
 	private boolean stopped = true;
 	private ServerSocket socket;
 	private Socket client;
+	private BufferedReader reader;
 
 	public JavaAlgorithm() {
 	}
@@ -26,6 +29,7 @@ public abstract class JavaAlgorithm {
 		System.out.println("Listening on port " + port);
 		this.client = socket.accept();
 		System.out.println("Client connected: " + client.getInetAddress().getHostAddress());
+		this.reader = new BufferedReader(new InputStreamReader(this.client.getInputStream()));
 
 		this.stopped = false;
 		while (! this.stopped) {
@@ -47,23 +51,16 @@ public abstract class JavaAlgorithm {
 	}
 
 	public void readIncomingMessage() throws Exception {
-		//    	BufferedReader reader = new BufferedReader(new InputStreamReader(this.client.getInputStream()));
-		//    	String message = reader.readLine();
-		//        String message = this.sock.recv_string();
-		byte[] bytes = new byte[8192];
-		int read = this.client.getInputStream().read(bytes);
-		if (read > -1) {
-			String message = new String(bytes);
-			if (message != null) {
-				message = message.trim();
-			}
-			if (message == null || message.equals("") || message.equals("stop")) {
-				this.stop();
-			} else {
-				JSONParser parser = new JSONParser();
-				JSONObject map = (JSONObject) parser.parse(message);
-				this.processMessage(map);
-			}
+		String message = reader.readLine();
+		if (message != null) {
+			message = message.trim();
+		}
+		if (message == null || message.equals("") || message.equals("stop")) {
+			this.stop();
+		} else {
+			JSONParser parser = new JSONParser();
+			JSONObject map = (JSONObject) parser.parse(message);
+			this.processMessage(map);
 		}
 	}
 
@@ -76,7 +73,8 @@ public abstract class JavaAlgorithm {
 	public abstract void play(JSONObject context) throws Exception;
 
 	public void sendResponse(JSONObject message) throws IOException {
-		byte[] bytes = message.toJSONString().getBytes();
+		String messageToSend = message.toJSONString() + "\n";
+		byte[] bytes = messageToSend.getBytes();
 		this.client.getOutputStream().write(bytes);
 	}
 

@@ -21,7 +21,5 @@ lib64
 *.mo
 
 javadoc
-.project
-.classpath
 *.class
 *.jar

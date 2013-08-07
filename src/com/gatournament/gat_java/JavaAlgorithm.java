@@ -24,6 +24,10 @@ public abstract class GameAlgorithm {
 	public GameAlgorithm() {
 	}
 
+	public void log(String message) {
+		System.out.println("[GATJava] " + message);
+	}
+
 	public void listen(int port) throws Exception {
 		this.socket = new ServerSocket(port);
 		System.out.println("Listening on port " + port);

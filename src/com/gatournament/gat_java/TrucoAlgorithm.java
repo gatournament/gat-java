@@ -31,7 +31,7 @@ public abstract class TrucoAlgorithm extends JavaAlgorithm {
 	public abstract boolean acceptTruco(JSONObject context);
 
 	public boolean canTruco(JSONObject context) {
-		return ((Long) context.get("round_value")) < 12;
+		return ((Boolean) context.get("round_can_truco"));
 	}
 
 	public void upcard(Object card) throws IOException {

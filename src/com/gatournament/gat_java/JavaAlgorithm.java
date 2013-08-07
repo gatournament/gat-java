@@ -11,17 +11,17 @@ import org.json.simple.parser.JSONParser;
 
 // public static void main(String[] args) throws Exception {
 //     int port = Integer.parseInt(args[0]);
-//     JavaAlgorithm algorithm = new JavaAlgorithm();
+//     GameAlgorithm algorithm = new GameAlgorithm();
 //     algorithm.listen(port);
 // }
 @SuppressWarnings("unchecked")
-public abstract class JavaAlgorithm {
+public abstract class GameAlgorithm {
 	private boolean stopped = true;
 	private ServerSocket socket;
 	private Socket client;
 	private BufferedReader reader;
 
-	public JavaAlgorithm() {
+	public GameAlgorithm() {
 	}
 
 	public void listen(int port) throws Exception {

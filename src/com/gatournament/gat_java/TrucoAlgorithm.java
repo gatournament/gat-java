@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.json.simple.JSONObject;
 
 @SuppressWarnings("unchecked")
-public abstract class TrucoAlgorithm extends JavaAlgorithm {
+public abstract class TrucoAlgorithm extends GameAlgorithm {
 
 	@Override
 	public void processMessage(JSONObject message) throws Exception {

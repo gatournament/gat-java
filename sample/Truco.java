@@ -6,7 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 @SuppressWarnings("unchecked")
-public class SampleTrucoAlgorithm extends TrucoAlgorithm {
+public class Truco extends TrucoAlgorithm {
 
 	/**
 	 * You must decide which card of your hand you want to upcard in the table.
@@ -14,7 +14,8 @@ public class SampleTrucoAlgorithm extends TrucoAlgorithm {
 	 */
 	@Override
 	public void play(JSONObject context) throws Exception {
-		System.out.println(context); // to see all information you have to take your decision
+		// to see all information you have to take your decision
+		//System.out.println(context);
 
 		Random random = new Random();
 		boolean randomDecisionToTruco = random.nextInt(10) > 5;
@@ -36,7 +37,7 @@ public class SampleTrucoAlgorithm extends TrucoAlgorithm {
 	// Required
 	public static void main(String[] args) throws Exception {
 		int port = Integer.parseInt(args[0]);
-		SampleTrucoAlgorithm algorithm = new SampleTrucoAlgorithm();
+		Truco algorithm = new Truco();
 		algorithm.listen(port);
 	}
 }

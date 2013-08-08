@@ -4,7 +4,7 @@
     <resolvers>
 	    <chain name="chain">
 	        <filesystem name="local" m2compatible="true">
-	            <artifact pattern="${user.home}/.m2/repository/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]"/>
+                <artifact pattern="${user.home}/.ivy/repository/[organisation]/[module]/[revision]/[artifact](-[classifier]).[ext]"/>
 	        </filesystem>
 
 	        <ibiblio name="central" m2compatible="true"/>

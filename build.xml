@@ -90,32 +90,36 @@
 
 	<target name="publish-local" depends="clean, jarjar, jar-sources, jar-javadoc">
         <copy file="gat-java.pom" todir="dist"/>
-	    <ivy:publish artifactspattern="dist/[artifact].[ext]"
+	    <ivy:publish artifactspattern="dist/[artifact](-[classifier]).[ext]"
 	                    resolver="local"
 	                    pubrevision="${version}"
 	                    status="integration"
 	                    forcedeliver="true"
-	                    overwrite="true"/>
+	                    overwrite="true"
+                        publishivy="false"/>
 	    <echo message="project ${ant.project.name} published locally with version ${version}" />
 	</target>
 
     <target name="publish-snapshot" depends="publish-local">
         <copy file="gat-java.pom" todir="dist"/>
         <ivy:resolve/>
-        <ivy:publish artifactspattern="dist/[artifact].[ext]"
+        <ivy:publish artifactspattern="dist/[artifact](-[classifier]).[ext]"
                            resolver="nexus-snapshots"
                            pubrevision="${version}"
-                           overwrite="true" />
+                           overwrite="true"
+                           publishivy="false"/>
         <echo message="project ${ant.project.name} released with version ${version}" />
     </target>
 
     <target name="publish" depends="publish-local">
         <copy file="gat-java.pom" todir="dist"/>
         <ivy:resolve/>
-        <ivy:publish artifactspattern="dist/[artifact].[ext]"
+        <ivy:publish artifactspattern="dist/[artifact](-[classifier]).[ext]"
                            resolver="nexus-releases"
                            pubrevision="${version}"
-                           status="release" />
+                           status="release"
+                           overwrite="true"
+                           publishivy="false"/>
         <echo message="project ${ant.project.name} released with version ${version}" />
     </target>
 </project>

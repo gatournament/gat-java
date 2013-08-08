@@ -73,6 +73,12 @@ end
 
 task :publish => [:package] do
   publish_gat("https://oss.sonatype.org/service/local/staging/deploy/maven2")
+  # https://oss.sonatype.org/index.html#stagingRepositories
+  # Then release manually in to send it to the central repository.
+  # Steps to release it:
+  # 1) close the open staging repository
+  # 2) wait for the validation
+  # 3) select the closed repository and set release
 end
 
 task :default => [:tests]

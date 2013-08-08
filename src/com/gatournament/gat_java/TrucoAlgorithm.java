@@ -6,7 +6,6 @@ import org.json.simple.JSONObject;
 
 @SuppressWarnings("unchecked")
 public abstract class TrucoAlgorithm extends GameAlgorithm {
-
 	@Override
 	public void processMessage(JSONObject message) throws Exception {
 		if (message.get("action").equals("play")) {

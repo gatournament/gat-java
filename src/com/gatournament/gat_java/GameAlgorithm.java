@@ -17,7 +17,8 @@ import org.json.simple.parser.JSONParser;
 // public static void main(String[] args) throws Exception {
 //     int port = Integer.parseInt(args[0]);
 //     int logLevel = Integer.parseInt(args[1]);
-//     GameAlgorithm algorithm = new GameAlgorithm(logLevel);
+//     GameAlgorithm algorithm = new GameAlgorithm();
+//     algorithm.configLog(logLevel);
 //     algorithm.listen(port);
 // }
 @SuppressWarnings("unchecked")
@@ -29,15 +30,10 @@ public abstract class GameAlgorithm {
 	protected Logger logger;
 
 	public GameAlgorithm() {
-		this(20);
-	}
-
-	public GameAlgorithm(int logLevel) {
 		this.logger = Logger.getLogger("GATJava");
-		this.configLog(logLevel);
 	}
 
-	private void configLog(int logLevel) {
+	public void configLog(int logLevel) {
 		Formatter formatter = new Formatter() {
 			@Override
 			public String format(LogRecord record) {

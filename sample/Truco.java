@@ -37,7 +37,8 @@ public class Truco extends TrucoAlgorithm {
 	// Required
 	public static void main(String[] args) throws Exception {
 		int port = Integer.parseInt(args[0]);
-		Truco algorithm = new Truco();
+		int logLevel = Integer.parseInt(args[1]);
+		Truco algorithm = new Truco(logLevel);
 		algorithm.listen(port);
 	}
 }

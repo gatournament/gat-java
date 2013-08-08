@@ -30,7 +30,7 @@ def publish_gat(repo)
   publish(username, repo, path, file)
 
   path = "/com/gatournament/gat-java/0.0.1/gat-java.jar"
-  file = "dist/gat-java-only.jar"
+  file = "dist/gat-java.jar"
   publish(username, repo, path, file)
 
   path = "/com/gatournament/gat-java/0.0.1/gat-java-sources.jar"

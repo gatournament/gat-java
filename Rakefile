@@ -19,27 +19,27 @@ def colorize(text, color)
   end
 end
 
-def publish(username, repo, path, file)
-  sh "curl -u #{username} #{repo}#{path} --request PUT -H 'Content-Type:text/xml' --data @#{file}"
+def publish(username, repo, path, file, content_type, data_type="--data")
+  sh "curl -u #{username} #{repo}#{path} --request PUT -H 'Content-Type:#{content_type}' #{data_type} @#{file}"
 end
 
 def publish_gat(repo)
   username = "gat"
   path = "/com/gatournament/gat-java/0.0.1/gat-java.pom"
   file = "gat-java.pom"
-  publish(username, repo, path, file)
+  publish(username, repo, path, file, "text/xml")
 
   path = "/com/gatournament/gat-java/0.0.1/gat-java.jar"
   file = "dist/gat-java.jar"
-  publish(username, repo, path, file)
+  publish(username, repo, path, file, "application/octet-stream", "--data-binary")
 
   path = "/com/gatournament/gat-java/0.0.1/gat-java-sources.jar"
   file = "dist/gat-java-sources.jar"
-  publish(username, repo, path, file)
+  publish(username, repo, path, file, "application/octet-stream", "--data-binary")
 
   path = "/com/gatournament/gat-java/0.0.1/gat-java-javadoc.jar"
   file = "dist/gat-java-javadoc.jar"
-  publish(username, repo, path, file)
+  publish(username, repo, path, file, "application/octet-stream", "--data-binary")
 end
 
 task :tag => [:tests] do

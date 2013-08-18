@@ -84,15 +84,24 @@ public abstract class GameAlgorithm {
 				this.log(e.toString(), Level.SEVERE);
 				this.sendError(e.toString());
 				this.stop();
+				this.close();
 				throw e;
 			}
 		}
-		client.close();
-		socket.close();
+		this.close();
 	}
 
 	public void stop() {
 		this.stopped = true;
+	}
+
+	public void close() {
+		if (client != null) {
+			client.close();
+		}
+		if (socket != null) {
+			socket.close();
+		}
 	}
 
 	public void readIncomingMessage() throws Exception {

@@ -95,7 +95,7 @@ public abstract class GameAlgorithm {
 		this.stopped = true;
 	}
 
-	public void close() {
+	public void close() throws IOException {
 		if (client != null) {
 			client.close();
 		}

@@ -5,7 +5,6 @@ import java.util.Random;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-@SuppressWarnings("unchecked")
 public class Truco extends TrucoAlgorithm {
 
 	/**
